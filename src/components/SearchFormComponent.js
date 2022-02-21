@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import { Form, Button } from "react-bootstrap"
 
 const SearchFormComponent = () => {
@@ -38,4 +38,4 @@ const SearchFormComponent = () => {
   )
 }
 
-export default SearchFormComponent;
+export default SearchFormComponent
