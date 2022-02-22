@@ -22,7 +22,7 @@ const SearchFormComponent = () => {
     const { similar_tracks, artist, track, tag } = apiParams
     const [encodedArtist, encodedTrack, encodedTag] = [ artist, track, tag ].map(str => encodeURIComponent(str))
     console.log("Encoded", encodedArtist, encodedTrack, encodedTag)
-    const url = `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodedArtist}&limit=10&api_key=${key}&format=json`
+    const url = `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodedArtist}&limit=12&api_key=${key}&format=json`
     console.log(url)
     fetch(url)
       .then(res => res.json())
