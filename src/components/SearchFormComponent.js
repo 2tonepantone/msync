@@ -4,28 +4,31 @@ import { Form, Button } from "react-bootstrap"
 const SearchFormComponent = () => {
   return (
     <Form>
-      <Form.Group className="mb-3">
+      <Form.Group>
         <Form.Check
           inline
           defaultChecked
           label="Similar Artists"
-          name="group1"
+          name="similar"
+          value="artists"
           type="radio"
-          id="radio-artists"
         />
         <Form.Check
           inline
           label="Similar Tracks"
-          name="group1"
+          name="similar"
+          value="tracks"
           type="radio"
-          id="radio-tracks"
         />
+      </Form.Group>
+      <Form.Group>
         <Form.Floating className="d-flex">
           <Form.Control
             required
             id="floatingSearchInput"
             type="text"
             placeholder="Enter an artist or track name"
+            name="query"
           />
           <label htmlFor="floatingSearchInput">Enter an artist or track name</label>
           <Button variant="outline-primary" type="submit">Search</Button>
