@@ -22,7 +22,7 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
           console.log("Oops!", error)
         }
       )
-  }, [key, mbid])
+  }, [key, mbid, name])
 
   return (
     <Card style={{ width: '18rem' }}>
