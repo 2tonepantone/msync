@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import { Row, Col } from "react-bootstrap"
-import SimilarArtistCard from "./SimilarArtistCard"
+import SimilarArtistCard from "../components/SimilarArtistCard"
 
 const SimilarArtists = () => {
   const key = process.env.REACT_APP_KEY
+  const { artist } = useParams()
   const [similarArtists, setSimilarArtists] = useState()
   const [queriedArtist, setQueriedArtists] = useState()
 
   useEffect(() => {
-    const url = `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodedArtist}&limit=12&api_key=${key}&format=json`
+    const url = `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${artist}&limit=12&api_key=${key}&format=json`
     console.log(url)
     fetch(url)
       .then(res => res.json())
@@ -21,7 +23,7 @@ const SimilarArtists = () => {
           console.log("Oops!", error)
         }
       )
-  })
+  }, [artist, key])
 
   return (
     <Row>
