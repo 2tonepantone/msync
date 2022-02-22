@@ -31,11 +31,13 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
           {match}% similar to {queriedArtist}
         </Card.Subtitle>
       </Card.Body>
-      <ListGroup variant="flush">
-        {listeners && <ListGroupItem>Listeners: {listeners}</ListGroupItem>}
-        {playCount && <ListGroupItem>Play count: {playCount}</ListGroupItem>}
-        {tags && <ListGroupItem>Tags: {tags}</ListGroupItem>}
-      </ListGroup>
+      {(listeners || playCount || tags) &&
+        <ListGroup variant="flush">
+          {listeners && <ListGroupItem>Listeners: {listeners}</ListGroupItem>}
+          {playCount && <ListGroupItem>Play count: {playCount}</ListGroupItem>}
+          {tags && <ListGroupItem>Tags: {tags}</ListGroupItem>}
+        </ListGroup>
+      }
     </Card>
   )
 }
