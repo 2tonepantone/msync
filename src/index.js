@@ -11,7 +11,9 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path=":artist" element={<SimilarArtists />} />
+        <Route path="artists">
+          <Route path=":artist" element={<SimilarArtists />} />
+        </Route>
       </Route>
     </Routes>
   </BrowserRouter>,
