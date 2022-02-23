@@ -7,7 +7,7 @@ const SimilarArtists = () => {
   const key = process.env.REACT_APP_KEY
   const { artist } = useParams()
   const [similarArtists, setSimilarArtists] = useState()
-  const [queriedArtist, setQueriedArtists] = useState()
+  const [queriedArtist, setQueriedArtist] = useState()
 
   useEffect(() => {
     const url = `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${artist}&limit=12&api_key=${key}&format=json`
@@ -17,7 +17,7 @@ const SimilarArtists = () => {
       .then(
         (result) => {
           setSimilarArtists(result.similarartists.artist)
-          setQueriedArtists(result.similarartists['@attr'].artist)
+          setQueriedArtist(result.similarartists['@attr'].artist)
         },
         (error) => {
           console.log("Oops!", error)
