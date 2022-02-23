@@ -1,20 +1,30 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect, useRef, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 
 const SearchFormComponent = () => {
-  const [apiParams, setApiParams] = useState({similar: "", artist: "", track: ""})
+  const [similarTracks, setSimilarTracks] = useState(false)
+  const [artistQuery, setArtistQuery] = useState("")
+  const [trackQuery, setTrackQuery] = useState("")
+  const didMountRef = useRef(false)
+  const navigate = useNavigate()
 
-  const handleChange = (event) => {
-    const { name, value } = event.target
-    setApiParams(prevApiParams => ({
-      ...prevApiParams,
-      [name]: value
-    }))
+  useEffect(() => {
+    if (didMountRef.current) {
+      var timeOutId = setTimeout(() => navigate(`/${artistQuery}`), 500)
+    }
+    didMountRef.current = true
+
+    return () => clearTimeout(timeOutId)
+  }, [artistQuery, navigate])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate(`/${artistQuery}`)
   }
 
   return (
-    <Form onSubmit={(e) => e.preventDefault()}>
+    <Form onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Check
           inline
@@ -23,7 +33,6 @@ const SearchFormComponent = () => {
           name="similar"
           value="artists"
           type="radio"
-          onChange={handleChange}
         />
         <Form.Check
           inline
@@ -31,7 +40,6 @@ const SearchFormComponent = () => {
           name="similar"
           value="tracks"
           type="radio"
-          onChange={handleChange}
         />
       </Form.Group>
       <Form.Group>
@@ -42,17 +50,15 @@ const SearchFormComponent = () => {
             type="text"
             placeholder="Enter an artist name"
             name="artist"
-            onChange={handleChange}
+            onChange={e => setArtistQuery(e.target.value)}
             />
           <label htmlFor="floatingSearchInput">Enter an artist's name</label>
-          <Link to={`/${apiParams.artist}`}>
-            <Button
-              variant="outline-primary"
-              type="submit"
-            >
-              Search
-            </Button>
-          </Link>
+          <Button
+            variant="outline-primary"
+            type="submit"
+          >
+            Search
+          </Button>
         </Form.Floating>
         <Form.Text className="text-muted">
           Don't worry about spelling mistakes. We'll do our best to guess your intent.
