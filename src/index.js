@@ -5,6 +5,7 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
 import SimilarArtists from './routes/SimilarArtists'
+import ArtistDetail from './routes/ArtistDetail'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
@@ -13,6 +14,9 @@ ReactDOM.render(
       <Route path="/" element={<App />}>
         <Route path="artists">
           <Route path=":artist" element={<SimilarArtists />} />
+        </Route>
+        <Route path="artist">
+          <Route path=":artist" element={<ArtistDetail />} />
         </Route>
       </Route>
     </Routes>
