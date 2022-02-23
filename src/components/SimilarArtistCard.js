@@ -8,7 +8,8 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
   const key = process.env.REACT_APP_KEY
 
   useEffect(() =>{
-    fetch(`http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&mbid=${mbid}&api_key=${key}`)
+    const query = mbid ? `mbid=${mbid}` : `artist=${encodeURIComponent(name)}`
+    fetch(`http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&${query}&api_key=${key}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -21,7 +22,7 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
           console.log("Oops!", error)
         }
       )
-  }, [key, mbid])
+  }, [key, mbid, name])
 
   return (
     <Card style={{ width: '18rem' }}>
@@ -32,9 +33,9 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
         </Card.Subtitle>
       </Card.Body>
       <ListGroup variant="flush">
-        {listeners && <ListGroupItem>Listeners: {listeners}</ListGroupItem>}
-        {playCount && <ListGroupItem>Play count: {playCount}</ListGroupItem>}
-        {tags && <ListGroupItem>Tags: {tags}</ListGroupItem>}
+        <ListGroupItem>Listeners: {listeners}</ListGroupItem>
+        <ListGroupItem>Play count: {playCount}</ListGroupItem>
+        <ListGroupItem>Tags: {tags}</ListGroupItem>
       </ListGroup>
     </Card>
   )
