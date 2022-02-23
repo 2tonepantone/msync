@@ -11,7 +11,7 @@ const SearchFormComponent = () => {
 
   useEffect(() => {
     if (didMountRef.current) {
-      var timeOutId = setTimeout(() => navigate(`/${artistQuery}`), 500)
+      var timeOutId = setTimeout(() => navigate(`artists/${artistQuery}`), 500)
     }
     didMountRef.current = true
 
@@ -20,7 +20,7 @@ const SearchFormComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate(`/${artistQuery}`)
+    navigate(`artists/${artistQuery}`)
   }
 
   return (
