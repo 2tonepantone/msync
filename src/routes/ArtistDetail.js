@@ -57,14 +57,14 @@ const ArtistDetail = () => {
             {ontour === '1' ? "Currently" : "Not"} touring
           </Card.Subtitle>
           <Card.Text className={`bio mb-1 ${expanded ? "expanded" : ""}`}>
-            {(bio.content).match(/^.+/)}
+            {(bio.content).match(/[^<]+/)}
           </Card.Text>
           <Button
             variant="outline-secondary"
             size="sm"
             onClick={() => setExpanded(!expanded)}
           >
-            Read more
+            {expanded ? "Show Less" : "Read more"}
           </Button>
         </Card.Body>
         <ListGroup variant="flush">
