@@ -5,18 +5,26 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
 import SimilarArtists from './routes/SimilarArtists'
+import ArtistDetail from './routes/ArtistDetail'
 import reportWebVitals from './reportWebVitals'
+import store from './app/store'
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route path="artists">
-          <Route path=":artist" element={<SimilarArtists />} />
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="artists">
+            <Route path=":artist" element={<SimilarArtists />} />
+          </Route>
         </Route>
-      </Route>
-    </Routes>
-  </BrowserRouter>,
+        <Route path="/artist">
+          <Route path=":artist" element={<ArtistDetail />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 )
 
