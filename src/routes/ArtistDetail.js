@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
-import { Card, ListGroup, ListGroupItem, Container } from "react-bootstrap"
+import { Card, ListGroup, ListGroupItem, Container, Row, Col } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import SimilarArtistCard from "../components/SimilarArtistCard"
 
 
 const ArtistDetail = () => {
@@ -29,6 +30,19 @@ const ArtistDetail = () => {
           <ListGroupItem>Tags: {(tags.tag).map(tag => tag.name).join(', ')}</ListGroupItem>
         </ListGroup>
       </Card>
+      <Row className="mt-5">
+        {similar.artist && <h5>Similar Artists:</h5>}
+        {similar.artist && similar.artist.map(artist => (
+          <Col className="g-4">
+            <SimilarArtistCard
+              name={artist.name}
+              queriedArtist={name}
+              key={artist.mbid}
+              mbid={artist.mbid}
+            />
+          </Col>
+        ))}
+      </Row>
     </Container>
   )
 }
