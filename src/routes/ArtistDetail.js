@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react"
-import { Card, ListGroup, ListGroupItem, Container, Row, Col, Accordion } from "react-bootstrap"
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Container,
+  Row,
+  Col,
+  Accordion,
+  Button
+} from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import SimilarArtistCard from "../components/SimilarArtistCard"
-
+import './ArtistDetail.css'
 
 const ArtistDetail = () => {
   const key = process.env.REACT_APP_KEY
@@ -13,6 +22,7 @@ const ArtistDetail = () => {
   const [topAlbums, setTopAlbums] = useState()
   // console.log(`From detail ${Object.keys(artistsData).length}`, artistsData)
   const { name, bio, ontour, similar, stats, tags } = artistsData[artist]
+  const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
     fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${artist}&api_key=${key}&format=json&limit=10`)
@@ -46,9 +56,16 @@ const ArtistDetail = () => {
           <Card.Subtitle className="mb-2 text-muted">
             {ontour === '1' ? "Currently" : "Not"} touring
           </Card.Subtitle>
-          <Card.Text>
-            {bio.summary}
+          <Card.Text className={`bio mb-1 ${expanded ? "expanded" : ""}`}>
+            {bio.content}
           </Card.Text>
+          <Button
+            variant="outline-secondary"
+            size="sm"
+            onClick={() => setExpanded(!expanded)}
+          >
+            Read more
+          </Button>
         </Card.Body>
         <ListGroup variant="flush">
           <Accordion>
