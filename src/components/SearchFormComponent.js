@@ -24,7 +24,7 @@ const SearchFormComponent = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="mt-5" onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Check
           inline
