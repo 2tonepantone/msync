@@ -7,20 +7,24 @@ import App from './App'
 import SimilarArtists from './routes/SimilarArtists'
 import ArtistDetail from './routes/ArtistDetail'
 import reportWebVitals from './reportWebVitals'
+import store from './app/store'
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route path="artists">
-          <Route path=":artist" element={<SimilarArtists />} />
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="artists">
+            <Route path=":artist" element={<SimilarArtists />} />
+          </Route>
+          <Route path="artist">
+            <Route path=":artist" element={<ArtistDetail />} />
+          </Route>
         </Route>
-        <Route path="artist">
-          <Route path=":artist" element={<ArtistDetail />} />
-        </Route>
-      </Route>
-    </Routes>
-  </BrowserRouter>,
+      </Routes>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 )
 
