@@ -57,7 +57,7 @@ const ArtistDetail = () => {
             {ontour === '1' ? "Currently" : "Not"} touring
           </Card.Subtitle>
           <Card.Text className={`bio mb-1 ${expanded ? "expanded" : ""}`}>
-            {bio.content}
+            {(bio.content).match(/^.+/)}
           </Card.Text>
           <Button
             variant="outline-secondary"
