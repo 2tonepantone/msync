@@ -81,7 +81,7 @@ const ArtistDetail = () => {
                 <>
                   <Card.Header>{`${i+1}. ${track.name}`}</Card.Header>
                   <ListGroupItem>
-                    Plays: {parseInt(track.playcount).toLocaleString()}, Listeners: {parseInt(track.listeners).toLocaleString()}
+                    <strong>Plays:</strong> {parseInt(track.playcount).toLocaleString()} <strong>Listeners:</strong> {parseInt(track.listeners).toLocaleString()}
                   </ListGroupItem>
                 </>
               ))}
@@ -97,7 +97,7 @@ const ArtistDetail = () => {
                 <>
                   <Card.Header>{`${i+1}. ${album.name}`}</Card.Header>
                   <ListGroupItem>
-                    Plays: {parseInt(album.playcount).toLocaleString()}
+                    <strong>Plays:</strong> {parseInt(album.playcount).toLocaleString()}
                   </ListGroupItem>
                 </>
               ))}
