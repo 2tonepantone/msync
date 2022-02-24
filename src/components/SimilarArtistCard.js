@@ -38,7 +38,7 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          {match}% similar to {queriedArtist}
+          {match && `${match}% similar to ${queriedArtist}`}
         </Card.Subtitle>
       </Card.Body>
       <ListGroup variant="flush">
