@@ -9,20 +9,23 @@ import ArtistDetail from './routes/ArtistDetail'
 import reportWebVitals from './reportWebVitals'
 import store from './app/store'
 import { Provider } from 'react-redux'
+import ScrollToTop from './ScrollToTop'
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="artists">
-            <Route path=":artist" element={<SimilarArtists />} />
+      <ScrollToTop>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="artists">
+              <Route path=":artist" element={<SimilarArtists />} />
+            </Route>
           </Route>
-        </Route>
-        <Route path="/artist">
-          <Route path=":artist" element={<ArtistDetail />} />
-        </Route>
-      </Routes>
+          <Route path="/artist">
+            <Route path=":artist" element={<ArtistDetail />} />
+          </Route>
+        </Routes>
+      </ScrollToTop>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
