@@ -13,7 +13,7 @@ const ArtistDetail = () => {
   const { name, bio, ontour, similar, stats, tags } = artistsData[artist]
   console.log("artist")
   return (
-    <Container className="mt-5">
+    <Container className="m-5">
       <Card>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
