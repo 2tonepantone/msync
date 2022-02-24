@@ -57,20 +57,24 @@ const ArtistDetail = () => {
           <Card.Subtitle className="mb-2 text-muted">
             {ontour === '1' ? "Currently" : "Not"} touring
           </Card.Subtitle>
-          <Card.Text className={`bio mb-1 ${expanded ? "expanded" : ""}`}>
-            {(bio.content).match(/[^<]+/)}
-          </Card.Text>
-          <Button
-            variant="outline-secondary"
-            size="sm"
-            onClick={() => setExpanded(!expanded)}
-          >
-            {expanded ? "Show Less" : "Read more"}
-          </Button>
+          {bio.content &&
+            <>
+              <Card.Text className={`bio mb-1 ${expanded ? "expanded" : ""}`}>
+                {(bio.content).match(/[^<]+/)}
+              </Card.Text>
+              <Button
+                variant="outline-secondary"
+                size="sm"
+                onClick={() => setExpanded(!expanded)}
+              >
+                {expanded ? "Show Less" : "Read more"}
+              </Button>
+            </>
+          }
         </Card.Body>
         <ListGroup variant="flush">
           <Accordion>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey={name}>
               <Accordion.Header>Top Tracks:</Accordion.Header>
               <Accordion.Body className="p-0">
               {topTracks && topTracks.map((track, i) => (
@@ -85,7 +89,7 @@ const ArtistDetail = () => {
             </Accordion.Item>
           </Accordion>
           <Accordion>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey={name}>
               <Accordion.Header>Top Albums:</Accordion.Header>
               <Accordion.Body className="p-0">
                 {console.log("Photos", topAlbums)}
