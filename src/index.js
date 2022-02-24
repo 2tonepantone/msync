@@ -18,9 +18,9 @@ ReactDOM.render(
           <Route path="artists">
             <Route path=":artist" element={<SimilarArtists />} />
           </Route>
-          <Route path="artist">
-            <Route path=":artist" element={<ArtistDetail />} />
-          </Route>
+        </Route>
+        <Route path="/artist">
+          <Route path=":artist" element={<ArtistDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
