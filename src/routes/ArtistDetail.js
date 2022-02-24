@@ -23,9 +23,10 @@ const ArtistDetail = () => {
   // console.log(`From detail ${Object.keys(artistsData).length}`, artistsData)
   const { name, bio, ontour, similar, stats, tags } = artistsData[artist]
   const [expanded, setExpanded] = useState(false)
+  console.log('Artist detail artists', artist)
 
   useEffect(() => {
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${artist}&api_key=${key}&format=json&limit=10`)
+    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json&limit=10`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -36,7 +37,7 @@ const ArtistDetail = () => {
         }
       )
 
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${artist}&api_key=${key}&format=json`)
+    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -71,7 +72,7 @@ const ArtistDetail = () => {
           <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Top Tracks:</Accordion.Header>
-              <Accordion.Body>
+              <Accordion.Body className="p-0">
               {topTracks && topTracks.map((track, i) => (
                 <>
                   <Card.Header>{`${i+1}. ${track.name}`}</Card.Header>
@@ -86,7 +87,7 @@ const ArtistDetail = () => {
           <Accordion>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Top Albums:</Accordion.Header>
-              <Accordion.Body>
+              <Accordion.Body className="p-0">
                 {console.log("Photos", topAlbums)}
               {topAlbums && topAlbums.slice(0,10).map((album, i) => (
                 <>
