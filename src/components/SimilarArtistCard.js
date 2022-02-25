@@ -28,6 +28,8 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
       )
   }, [mbid, name])
 
+  const handleClick = () => document.getElementById('artistSearchInput').value = ''
+
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Body>
@@ -41,7 +43,7 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
         <ListGroupItem>Play count: {playCount}</ListGroupItem>
         <ListGroupItem>Tags: {tags}</ListGroupItem>
         <ListGroupItem>
-          <Link to={`/artist/${name}`}>More info</Link>
+          <Link to={`/artist/${name}`} onClick={handleClick}>More info</Link>
         </ListGroupItem>
       </ListGroup>
     </Card>
