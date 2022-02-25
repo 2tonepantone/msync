@@ -8,9 +8,8 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
   const [listeners, setListeners] = useState()
   const [playCount, setPlayCount] = useState()
   const [tags, setTags] = useState()
-  const dispatch = useDispatch()
-
   const key = process.env.REACT_APP_KEY
+  const dispatch = useDispatch()
 
   useEffect(() =>{
     const query = mbid ? `mbid=${mbid}` : `artist=${encodeURIComponent(name)}`
@@ -29,13 +28,6 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
       )
   }, [mbid, name])
 
-  const handleClick = () => {
-    const input = document.getElementById('artistSearchInput')
-    console.log("Input:", input.value)
-    input.value = ''
-    console.log("Input:", input.value)
-  }
-
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Body>
@@ -49,7 +41,7 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
         <ListGroupItem>Play count: {playCount}</ListGroupItem>
         <ListGroupItem>Tags: {tags}</ListGroupItem>
         <ListGroupItem>
-          <Link to={`/artist/${name}`} onClick={handleClick}>More info</Link>
+          <Link to={`/artist/${name}`}>More info</Link>
         </ListGroupItem>
       </ListGroup>
     </Card>
