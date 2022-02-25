@@ -1,15 +1,15 @@
 import SearchFormComponent from './components/SearchFormComponent'
+import NavbarComponent from './components/NavbarComponent';
 import './App.css'
-import { Container } from 'react-bootstrap'
 import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <Container>
-      <SearchFormComponent/>
+    <main>
+      <NavbarComponent />
       <Outlet />
-    </Container>
-  );
+    </main>
+  )
 }
 
 export default App;
