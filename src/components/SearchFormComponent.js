@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 
 const SearchFormComponent = () => {
@@ -48,7 +48,6 @@ const SearchFormComponent = () => {
             type="text"
             placeholder="Enter an artist name"
             name="artist"
-            value={useParams().artist}
             onChange={e => setArtistQuery(e.target.value)}
             />
           <label htmlFor="artistSearchInput">Enter an artist's name</label>

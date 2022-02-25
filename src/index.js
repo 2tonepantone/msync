@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
 import SimilarArtists from './routes/SimilarArtists'
 import ArtistDetail from './routes/ArtistDetail'
+import ArtistLists from './routes/ArtistLists'
 import reportWebVitals from './reportWebVitals'
 import store from './app/store'
 import { Provider } from 'react-redux'
@@ -28,12 +29,9 @@ ReactDOM.render(
                 </Container>
               }
             />
-            <Route path="artists">
-              <Route path=":artist" element={<SimilarArtists />} />
-            </Route>
-            <Route path="/artist">
-              <Route path=":artist" element={<ArtistDetail />} />
-            </Route>
+            <Route path="artists/:artist" element={<SimilarArtists />} />
+            <Route path="artist/:artist" element={<ArtistDetail />} />
+            <Route path="lists/artists" element={<ArtistLists />} />
           </Route>
         </Routes>
       </ScrollToTop>
