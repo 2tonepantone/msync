@@ -1,19 +1,23 @@
 import React from "react"
 import ArtistListCard from "../components/ArtistListCard"
 import { Col, Container, Row } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 const ArtistLists = () => {
-  let artistLists = [0, 2, 2, 2, 2, 2]
+  const {items} = useSelector(state => state.lists)
+
+  function flatten(obj) {
+    return Object.values(obj).flat()
+  }
+
+  const artistsData = flatten(items)
 
   return (
     <Container className="mb-5">
       <Row>
-        {artistLists && artistLists.map(list => (
-          <Col className="g-4">
-            <ArtistListCard />
-          </Col>
-        ))}
+        <Col className="g-4">
+          <ArtistListCard artistsData={artistsData} />
+        </Col>
       </Row>
     </Container>
   )
