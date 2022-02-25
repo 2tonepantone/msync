@@ -60,6 +60,7 @@ const ArtistDetail = () => {
             {name}
             <Button
               size="sm"
+              variant="outline-primary"
               onClick={() => dispatch(addItem(artistData))}
             >
               Favorite
