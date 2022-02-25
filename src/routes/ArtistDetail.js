@@ -23,7 +23,6 @@ const ArtistDetail = () => {
   // console.log(`From detail ${Object.keys(artistsData).length}`, artistsData)
   const { name, bio, ontour, similar, stats, tags } = artistsData[artist]
   const [expanded, setExpanded] = useState(false)
-  console.log('Artist detail artists', artist)
 
   useEffect(() => {
     fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json&limit=10`)
@@ -47,7 +46,7 @@ const ArtistDetail = () => {
           console.log("Oops!", error)
         }
       )
-  }, [artist, key])
+  }, [artist])
 
   return (
     <Container className="mb-5 mt-4">
@@ -92,7 +91,6 @@ const ArtistDetail = () => {
             <Accordion.Item eventKey={name}>
               <Accordion.Header>Top Albums:</Accordion.Header>
               <Accordion.Body className="p-0">
-                {console.log("Photos", topAlbums)}
               {topAlbums && topAlbums.slice(0,10).map((album, i) => (
                 <>
                   <Card.Header>{`${i+1}. ${album.name}`}</Card.Header>

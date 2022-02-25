@@ -11,7 +11,6 @@ const SimilarArtists = () => {
 
   useEffect(() => {
     const url = `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&limit=12&api_key=${key}&format=json`
-    console.log(url)
     fetch(url)
       .then(res => res.json())
       .then(
@@ -23,7 +22,7 @@ const SimilarArtists = () => {
           console.log("Oops!", error)
         }
       )
-  }, [artist, key])
+  }, [artist])
 
   return (
     <Container className="mb-5">
