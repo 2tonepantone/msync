@@ -50,7 +50,7 @@ const ArtistDetail = () => {
   }, [artist, key])
 
   return (
-    <Container className="m-5">
+    <Container className="mb-5 mt-4">
       <Card>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
@@ -109,7 +109,7 @@ const ArtistDetail = () => {
           <ListGroupItem>Tags: {(tags.tag).map(tag => tag.name).join(', ')}</ListGroupItem>
         </ListGroup>
       </Card>
-      <Row className="mt-5">
+      <Row className="mt-4">
         {similar.artist && <h5>Similar Artists:</h5>}
         {similar.artist && similar.artist.slice(0,3).map(artist => (
             <Col className="g-4">
