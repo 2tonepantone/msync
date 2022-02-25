@@ -9,10 +9,10 @@ import {
   Accordion,
   Button
 } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import SaveButton from "../components/SaveButton"
 import SimilarArtistCard from "../components/SimilarArtistCard"
-import { addItem } from "../features/artists/listsSlice"
 import './ArtistDetail.css'
 
 const ArtistDetail = () => {
@@ -24,7 +24,6 @@ const ArtistDetail = () => {
   // console.log(`From detail ${Object.keys(artistsData).length}`, artistsData)
   const { name, bio, ontour, similar, stats, tags } = artistsData[artist]
   const [expanded, setExpanded] = useState(false)
-  const dispatch = useDispatch()
 
   useEffect(() => {
     fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json&limit=10`)
@@ -50,21 +49,12 @@ const ArtistDetail = () => {
       )
   }, [artist])
 
-  const artistData = {[artist]: artistsData[artist]}
-
   return (
     <Container className="mb-5 mt-4">
       <Card>
         <Card.Body>
           <Card.Title className="d-flex justify-content-between">
-            {name}
-            <Button
-              size="sm"
-              variant="outline-primary"
-              onClick={() => dispatch(addItem(artistData))}
-            >
-              Favorite
-            </Button>
+            {name} <SaveButton artistName={name} />
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             {ontour === '1' ? "Currently" : "Not"} touring
