@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals'
 import store from './app/store'
 import { Provider } from 'react-redux'
 import ScrollToTop from './ScrollToTop'
+import { Container } from 'react-bootstrap'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,12 +18,22 @@ ReactDOM.render(
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<App />}>
+            <Route
+              index
+              element={
+                <Container className='mt-5'>
+                  <h1>
+                    Search for an artist or track above to find similar ones!
+                  </h1>
+                </Container>
+              }
+            />
             <Route path="artists">
               <Route path=":artist" element={<SimilarArtists />} />
             </Route>
-          </Route>
-          <Route path="/artist">
-            <Route path=":artist" element={<ArtistDetail />} />
+            <Route path="/artist">
+              <Route path=":artist" element={<ArtistDetail />} />
+            </Route>
           </Route>
         </Routes>
       </ScrollToTop>

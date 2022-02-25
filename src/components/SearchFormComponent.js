@@ -9,14 +9,14 @@ const SearchFormComponent = () => {
   const didMountRef = useRef(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (didMountRef.current) {
-      var timeOutId = setTimeout(() => navigate(`artists/${artistQuery}`), 500)
-    }
-    didMountRef.current = true
+  // useEffect(() => {
+  //   if (didMountRef.current) {
+  //     var timeOutId = setTimeout(() => navigate(`artists/${artistQuery}`), 500)
+  //   }
+  //   didMountRef.current = true
 
-    return () => clearTimeout(timeOutId)
-  }, [artistQuery, navigate])
+  //   return () => clearTimeout(timeOutId)
+  // }, [artistQuery, navigate])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -24,7 +24,7 @@ const SearchFormComponent = () => {
   }
 
   return (
-    <Form className="mt-5" onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Check
           inline
