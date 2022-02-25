@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { Row, Col } from "react-bootstrap"
+import { Row, Col, Container } from "react-bootstrap"
 import SimilarArtistCard from "../components/SimilarArtistCard"
 
 const SimilarArtists = () => {
@@ -26,19 +26,21 @@ const SimilarArtists = () => {
   }, [artist, key])
 
   return (
-    <Row>
-      {similarArtists && similarArtists.map(artist => (
-        <Col className="g-4">
-          <SimilarArtistCard
-            name={artist.name}
-            match={parseInt(artist.match * 100)}
-            queriedArtist={queriedArtist}
-            key={artist.mbid}
-            mbid={artist.mbid}
-          />
-        </Col>
-      ))}
-    </Row>
+    <Container className="mb-5">
+      <Row>
+        {similarArtists && similarArtists.map(artist => (
+          <Col className="g-4">
+            <SimilarArtistCard
+              name={artist.name}
+              match={parseInt(artist.match * 100)}
+              queriedArtist={queriedArtist}
+              key={artist.mbid}
+              mbid={artist.mbid}
+            />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   )
 }
 
