@@ -1,21 +1,28 @@
 import React from "react"
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Accordion, Card, ListGroup, ListGroupItem } from "react-bootstrap"
 
-const ArtistListCard = () => {
-
+const ArtistListCard = ({artistsData}) => {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card>
       <Card.Body>
-        <Card.Title>List Title</Card.Title>
+        <Card.Title>Favorite Artists</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          Subtitle
+          {artistsData.length} item(s) in list
         </Card.Subtitle>
       </Card.Body>
       <ListGroup variant="flush">
-        <ListGroupItem>Song</ListGroupItem>
-        <ListGroupItem>Song</ListGroupItem>
-        <ListGroupItem>Song</ListGroupItem>
-        <ListGroupItem>Song</ListGroupItem>
+        {artistsData && artistsData.map((artist, i) => (
+          <Accordion>
+            <Accordion.Item eventKey={artist.name}>
+              <Accordion.Header><strong>{i + 1}. {artist.name}</strong></Accordion.Header>
+              <Accordion.Body className="p-0">
+                <ListGroupItem>Play count: {parseInt(artist.stats.playcount).toLocaleString()}</ListGroupItem>
+                <ListGroupItem>Listeners: {parseInt(artist.stats.listeners).toLocaleString()}</ListGroupItem>
+                <ListGroupItem>Tags: {(artist.tags.tag).map(tag => tag.name).join(', ')}</ListGroupItem>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        ))}
       </ListGroup>
     </Card>
   )
