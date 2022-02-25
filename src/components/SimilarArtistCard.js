@@ -19,7 +19,6 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log("From card", result)
           setListeners(parseInt(result.artist.stats.listeners).toLocaleString())
           setPlayCount(parseInt(result.artist.stats.playcount).toLocaleString())
           setTags(result.artist.tags.tag.map(tag => tag.name).join(', '))
@@ -31,7 +30,7 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
       )
   }, [key, mbid, name])
 
-  console.log(`Redux data ${Object.keys(artistsData).length}`, artistsData)
+  // console.log(`Redux data ${Object.keys(artistsData).length}`, artistsData)
 
   return (
     <Card style={{ width: '18rem' }}>

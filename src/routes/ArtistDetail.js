@@ -23,7 +23,6 @@ const ArtistDetail = () => {
   // console.log(`From detail ${Object.keys(artistsData).length}`, artistsData)
   const { name, bio, ontour, similar, stats, tags } = artistsData[artist]
   const [expanded, setExpanded] = useState(false)
-  console.log('Artist detail artists', artist)
 
   useEffect(() => {
     fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json&limit=10`)
