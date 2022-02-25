@@ -91,7 +91,6 @@ const ArtistDetail = () => {
             <Accordion.Item eventKey={name}>
               <Accordion.Header>Top Albums:</Accordion.Header>
               <Accordion.Body className="p-0">
-                {console.log("Photos", topAlbums)}
               {topAlbums && topAlbums.slice(0,10).map((album, i) => (
                 <>
                   <Card.Header>{`${i+1}. ${album.name}`}</Card.Header>
