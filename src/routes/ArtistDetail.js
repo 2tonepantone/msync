@@ -50,7 +50,7 @@ const ArtistDetail = () => {
       )
   }, [artist])
 
-  const artistData = {[artist]: {...artistsData[artist], topTracks: topTracks, topAlbums: topAlbums}}
+  const artistData = {[artist]: artistsData[artist]}
 
   return (
     <Container className="mb-5 mt-4">
@@ -58,7 +58,12 @@ const ArtistDetail = () => {
         <Card.Body>
           <Card.Title className="d-flex justify-content-between">
             {name}
-            <Button onClick={() => dispatch(addItem(artistData))}>Favorite me!</Button>
+            <Button
+              size="sm"
+              onClick={() => dispatch(addItem(artistData))}
+            >
+              Favorite
+            </Button>
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
             {ontour === '1' ? "Currently" : "Not"} touring
