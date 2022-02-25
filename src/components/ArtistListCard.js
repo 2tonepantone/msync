@@ -1,5 +1,6 @@
 import React from "react"
 import { Accordion, Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 const ArtistListCard = ({artistsData}) => {
   return (
@@ -19,6 +20,9 @@ const ArtistListCard = ({artistsData}) => {
                 <ListGroupItem>Play count: {parseInt(artist.stats.playcount).toLocaleString()}</ListGroupItem>
                 <ListGroupItem>Listeners: {parseInt(artist.stats.listeners).toLocaleString()}</ListGroupItem>
                 <ListGroupItem>Tags: {(artist.tags.tag).map(tag => tag.name).join(', ')}</ListGroupItem>
+                <ListGroupItem>
+                  <Link to={`/artist/${artist.name}`}>More info</Link>
+                </ListGroupItem>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
