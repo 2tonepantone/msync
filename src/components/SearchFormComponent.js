@@ -1,22 +1,20 @@
-import React, { useEffect, useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import { Form, Button } from "react-bootstrap"
 
 const SearchFormComponent = () => {
+  const [artistQuery, setArtistQuery] = useState()
   const [similarTracks, setSimilarTracks] = useState(false)
-  const [artistQuery, setArtistQuery] = useState("")
   const [trackQuery, setTrackQuery] = useState("")
-  const didMountRef = useRef(false)
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   if (didMountRef.current) {
-  //     var timeOutId = setTimeout(() => navigate(`artists/${artistQuery}`), 500)
-  //   }
-  //   didMountRef.current = true
+  useEffect(() => {
+    if (artistQuery) {
+      var timeOutId = setTimeout(() => navigate(`artists/${artistQuery}`), 500)
+    }
 
-  //   return () => clearTimeout(timeOutId)
-  // }, [artistQuery, navigate])
+    return () => clearTimeout(timeOutId)
+  }, [artistQuery])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -46,13 +44,14 @@ const SearchFormComponent = () => {
         <Form.Floating className="d-flex">
           <Form.Control
             required
-            id="floatingSearchInput"
+            id="artistSearchInput"
             type="text"
             placeholder="Enter an artist name"
             name="artist"
+            value={useParams().artist}
             onChange={e => setArtistQuery(e.target.value)}
             />
-          <label htmlFor="floatingSearchInput">Enter an artist's name</label>
+          <label htmlFor="artistSearchInput">Enter an artist's name</label>
           <Button
             variant="outline-primary"
             type="submit"
