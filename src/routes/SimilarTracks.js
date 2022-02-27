@@ -33,12 +33,9 @@ const SimilarTracks = () => {
         {SimilarTracks && SimilarTracks.map(track => (
           <Col className="g-4">
             <SimilarTrackCard
-              name={track.name}
+              trackData={track}
               match={parseInt(track.match * 100)}
-              queriedArtist={queriedArtist}
               queriedTrack={capitalize(trackName)}
-              key={track.mbid}
-              mbid={track.mbid}
             />
           </Col>
         ))}
