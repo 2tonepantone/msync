@@ -14,6 +14,7 @@ import ScrollToTop from './ScrollToTop'
 import { Container } from 'react-bootstrap'
 import SimilarTracks from './routes/SimilarTracks'
 import TrackDetail from './routes/TrackDetail'
+import TrackLists from './routes/TrackLists'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -36,6 +37,7 @@ ReactDOM.render(
             <Route path="lists/artists" element={<ArtistLists />} />
             <Route path="tracks/:artist/:trackName" element={<SimilarTracks />} />
             <Route path="track/:artist/:trackName" element={<TrackDetail />} />
+            <Route path="lists/tracks" element={<TrackLists />} />
           </Route>
         </Routes>
       </ScrollToTop>
