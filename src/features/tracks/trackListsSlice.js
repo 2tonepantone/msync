@@ -7,16 +7,16 @@ export const trackListsSlice = createSlice({
     addItem: (state, action) => {
       state.push(action.payload)
     },
-    deleteItem: (state, action) => {
+    deleteTrackItem: (state, action) => {
       const filteredList = state.filter(obj => obj.items.name !== action.payload)
       return [ ...filteredList ]
     },
-    deleteList: (state, action) => {
+    deleteTrackList: (state, action) => {
       const filteredLists = state.filter(obj => obj.listTitle !== action.payload)
       return [...filteredLists]
     }
   },
 })
 
-export const { addItem, deleteItem, deleteList } = trackListsSlice.actions
+export const { addItem, deleteTrackItem, deleteTrackList } = trackListsSlice.actions
 export default trackListsSlice.reducer
