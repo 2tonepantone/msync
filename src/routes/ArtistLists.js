@@ -20,7 +20,7 @@ const ArtistLists = ({ lists }) => {
       <Row>
         {Object.entries(mergedLists).map(([key, value]) => (
           <Col className="g-4">
-            <ArtistListCard listTitle={key} />
+            <ArtistListCard listTitle={key} artistList={value} />
           </Col>
         ))}
       </Row>
