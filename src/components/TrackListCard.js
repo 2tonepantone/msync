@@ -10,7 +10,7 @@ const TrackListCard = ({ listTitle, trackList }) => {
       <Card.Body>
         <Card.Title className="d-flex justify-content-between">
           {listTitle}
-          <DeleteButton target={listTitle} targetType="list" />
+          <DeleteButton target={listTitle} targetType="list" listType="tracks" />
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           {trackList.items.length} item(s) in list
@@ -29,7 +29,7 @@ const TrackListCard = ({ listTitle, trackList }) => {
                 <ListGroupItem>Tags: {(track.toptags.tag).map(tag => tag.name).join(', ')}</ListGroupItem>
                 <ListGroupItem className="d-flex justify-content-between">
                   <Link to={`/track/${track.artist.name}/${track.name}`}>More info</Link>
-                  <DeleteButton target={track.name} targetType="artist" />
+                  <DeleteButton target={track.name} targetType="track" listType="tracks" />
                 </ListGroupItem>
               </Accordion.Body>
             </Accordion.Item>
