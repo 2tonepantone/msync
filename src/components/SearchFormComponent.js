@@ -9,12 +9,10 @@ const SearchFormComponent = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (artistQuery) {
+    if (artistQuery && trackQuery && similarTracks) {
+      var timeOutIdTracks = setTimeout(() => navigate(`tracks/${artistQuery}/${trackQuery}`), 500)
+    } else if (artistQuery && !similarTracks) {
       var timeOutId = setTimeout(() => navigate(`artists/${artistQuery}`), 500)
-    }
-
-    if (artistQuery && trackQuery) {
-      var timeOutIdTracks = setTimeout(() => navigate(`artists/${artistQuery}`), 500)
     }
 
     return () => {
@@ -22,11 +20,15 @@ const SearchFormComponent = () => {
       clearTimeout(timeOutIdTracks)
     }
 
-  }, [artistQuery])
+  }, [artistQuery, trackQuery])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate(`artists/${artistQuery}`)
+    if (artistQuery && trackQuery && similarTracks) {
+      navigate(`tracks/${artistQuery}/${trackQuery}`)
+    } else if (artistQuery && !similarTracks) {
+      navigate(`artists/${artistQuery}`)
+    }
   }
 
   return (
