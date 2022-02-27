@@ -21,7 +21,6 @@ const ArtistDetail = () => {
   const artistsData = useSelector(state => state.artists)
   const [topTracks, setTopTracks] = useState()
   const [topAlbums, setTopAlbums] = useState()
-  // console.log(`From detail ${Object.keys(artistsData).length}`, artistsData)
   const { name, bio, ontour, similar, stats, tags } = artistsData[artist]
   const [expanded, setExpanded] = useState(false)
 
