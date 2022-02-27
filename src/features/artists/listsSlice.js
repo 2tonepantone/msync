@@ -8,10 +8,8 @@ export const listsSlice = createSlice({
       state.push(action.payload)
     },
     deleteItem: (state, action) => {
-      return [
-        ...state,
-        state.filter(obj => obj.items.name !== action.payload)
-      ]
+      const filteredList = state.filter(obj => obj.items.name !== action.payload)
+      return [ ...filteredList ]
     },
   },
 })
