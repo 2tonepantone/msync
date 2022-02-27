@@ -29,7 +29,7 @@ const TrackListCard = ({ listTitle, trackList }) => {
                 <ListGroupItem>Tags: {(track.toptags.tag).map(tag => tag.name).join(', ')}</ListGroupItem>
                 <ListGroupItem className="d-flex justify-content-between">
                   <Link to={`/track/${track.artist.name}/${track.name}`}>More info</Link>
-                  <DeleteButton target={track.name} targetType="track" listType="tracks" />
+                  <DeleteButton target={track.name} targetType="track" targetList={listTitle} listType="tracks" />
                 </ListGroupItem>
               </Accordion.Body>
             </Accordion.Item>
