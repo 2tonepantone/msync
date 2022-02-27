@@ -1,5 +1,5 @@
 import React from "react"
-import { Accordion, Button, Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Accordion, Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import DeleteButton from "./DeleteButton"
 
