@@ -3,7 +3,7 @@ import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { addTrack } from "../features/tracks/tracksSlice"
-import SaveButton from "./SaveButton"
+import SaveTrackButton from "./SaveTrackButton"
 
 const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
   const [listeners, setListeners] = useState()
@@ -37,7 +37,7 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
     <Card style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title className="d-flex justify-content-between">
-          {name} <SaveButton artistName={name} />
+          {name} <SaveTrackButton trackName={name} />
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           {match && `${match}% similar to "${queriedTrack}"`}
