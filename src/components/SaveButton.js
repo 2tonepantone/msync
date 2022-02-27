@@ -41,13 +41,13 @@ const SaveButton = ({ artistName }) => {
       id="dropdown-item-button"
       title="Add"
     >
+      <Dropdown.Item as="button" value="Favorites" onClick={handleClick}>Favorites</Dropdown.Item>
       {Object.entries(mergedLists).map(([key]) => (
         <Dropdown.Item as="button" value={key} onClick={handleClick}>{key}</Dropdown.Item>
       ))}
-      <Dropdown.Item as="button" value="Favorites" onClick={handleClick}>Favorites</Dropdown.Item>
       <Dropdown.Divider />
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+        <Form.Group>
           <Form.Control id="newList" type="text" placeholder="New list title.." />
         </Form.Group>
       </Form>
