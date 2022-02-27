@@ -4,20 +4,25 @@ import { Col, Container, Row } from "react-bootstrap"
 import { useSelector } from "react-redux"
 
 const ArtistLists = () => {
-  const {items} = useSelector(state => state.lists)
+  const lists = useSelector(state => state.lists)
+  const mergedLists = lists.reduce((acc, { listTitle, items }) => {
+    acc[listTitle] ??= { items: [] };
+    if (Array.isArray(items)) // if it's array type then concat
+      acc[listTitle].items = acc[listTitle].items.concat(items);
+    else
+      acc[listTitle].items.push(items);
 
-  function flatten(obj) {
-    return Object.values(obj).flat()
-  }
-
-  const artistsData = flatten(items)
+    return acc;
+  }, {})
 
   return (
     <Container className="mb-5">
       <Row>
-        <Col className="g-4">
-          <ArtistListCard artistsData={artistsData} />
-        </Col>
+        {Object.entries(mergedLists).map(([key, value]) => (
+          <Col className="g-4">
+            <ArtistListCard listTitle={key} artistsData={value}/>
+          </Col>
+        ))}
       </Row>
     </Container>
   )
