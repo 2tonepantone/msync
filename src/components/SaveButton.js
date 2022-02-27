@@ -1,21 +1,34 @@
-import React from "react"
-import { Button } from "react-bootstrap"
+import React, { useEffect, useState } from "react"
+import { Dropdown, DropdownButton } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { addItem } from "../features/artists/listsSlice"
 
 const SaveButton = ({ artistName }) => {
+  const [listTitle, setListTitle] = useState()
   const artistsData = useSelector(state => state.artists)
-  const artistData = { [artistName]: artistsData[artistName] }
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    listTitle && dispatch(addItem({items: artistsData[artistName], listTitle: listTitle}))
+  }, [listTitle])
+
+  const handleClick = (e) => {
+    if (e.target.value) {
+      setListTitle(e.target.value)
+    }
+  }
+
   return (
-    <Button
+    <DropdownButton
       size="sm"
       variant="outline-primary"
-      onClick={() => dispatch(addItem(artistData))}
+      id="dropdown-item-button"
+      title="Add"
     >
-      Favorite
-    </Button>
+      <Dropdown.Item as="button" value="Favorites" onClick={handleClick}>Favorites</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item as="button" value="New" onClick={handleClick}>New List</Dropdown.Item>
+    </DropdownButton>
   )
 }
 
