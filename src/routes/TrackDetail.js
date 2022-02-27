@@ -10,8 +10,7 @@ import {
 } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import SaveButton from "../components/SaveButton"
-import SimilarArtistCard from "../components/SimilarArtistCard"
+import SaveTrackButton from "../components/SaveTrackButton"
 import SimilarTrackCard from "../components/SimilarTrackCard"
 import './ArtistDetail.css'
 
@@ -19,9 +18,6 @@ const TrackDetail = () => {
   const key = process.env.REACT_APP_KEY
   const { artist, trackName } = useParams()
   const tracksData = useSelector(state => state.tracks)
-  // const [topTracks, setTopTracks] = useState()
-  // const [topAlbums, setTopAlbums] = useState()
-  console.log(tracksData)
   const { name, listeners, playcount, album, toptags, wiki } = tracksData[trackName]
   const [expanded, setExpanded] = useState(false)
   const [similarTracks, setSimilarTracks] = useState()
@@ -42,36 +38,12 @@ const TrackDetail = () => {
 
   const capitalize = (string) => (string.charAt(0).toUpperCase() + string.slice(1))
 
-  // useEffect(() => {
-  //   fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json&limit=10`)
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         setTopTracks(result.toptracks.track)
-  //       },
-  //       (error) => {
-  //         console.log("Oops!", error)
-  //       }
-  //     )
-
-  //   fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json`)
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         setTopAlbums(result.topalbums.album)
-  //       },
-  //       (error) => {
-  //         console.log("Oops!", error)
-  //       }
-  //     )
-  // }, [artist])
-
   return (
     <Container className="mb-5 mt-4">
       <Card>
         <Card.Body>
           <Card.Title className="d-flex justify-content-between">
-            {name} <SaveButton artistName={name} />
+            {name} <SaveTrackButton trackName={name} />
           </Card.Title>
           {wiki.content &&
             <>
