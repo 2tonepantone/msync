@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { addArtist } from "../features/artists/artistsSlice"
+import { addTrack } from "../features/tracks/tracksSlice"
 import SaveButton from "./SaveButton"
 
 const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
@@ -20,7 +20,7 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
         (result) => {
           setListeners(parseInt(result.track.listeners).toLocaleString())
           setTags(result.track.toptags.tag.map(tag => tag.name).join(', '))
-          // dispatch(addArtist({ [result.artist.name]: result.artist }))
+          dispatch(addTrack({ [name]: result.track }))
         },
         (error) => {
           console.log("Oops!", error)
@@ -49,7 +49,7 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
         <ListGroupItem>Listeners: {listeners}</ListGroupItem>
         <ListGroupItem>Tags: {tags}</ListGroupItem>
         <ListGroupItem>
-          <Link to={`/track/${name}`} onClick={handleClick}>More track info</Link>
+          <Link to={`/track/${artist.name}/${name}`} onClick={handleClick}>More track info</Link>
         </ListGroupItem>
       </ListGroup>
     </Card>
