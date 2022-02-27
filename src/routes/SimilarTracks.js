@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Row, Col, Container } from "react-bootstrap"
-import SimilarArtistCard from "../components/SimilarArtistCard"
 import SimilarTrackCard from "../components/SimilarTrackCard"
 
 const SimilarTracks = () => {
   const key = process.env.REACT_APP_KEY
   const { artist, trackName } = useParams()
-  const [SimilarTracks, setSimilarTracks] = useState()
-  const [queriedArtist, setQueriedArtist] = useState()
+  const [similarTracks, setSimilarTracks] = useState()
 
   useEffect(() => {
     const url = `http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(trackName)}&limit=12&api_key=${key}&format=json`
@@ -17,7 +15,6 @@ const SimilarTracks = () => {
       .then(
         (result) => {
           setSimilarTracks(result.similartracks.track)
-          setQueriedArtist(result.similartracks['@attr'].artist)
         },
         (error) => {
           console.log("Oops!", error)
@@ -30,7 +27,7 @@ const SimilarTracks = () => {
   return (
     <Container className="mb-5">
       <Row>
-        {SimilarTracks && SimilarTracks.map(track => (
+        {similarTracks && similarTracks.map(track => (
           <Col className="g-4">
             <SimilarTrackCard
               trackData={track}
