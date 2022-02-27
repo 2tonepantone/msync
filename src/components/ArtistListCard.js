@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 const ArtistListCard = ({listTitle, artistsData}) => {
   return (
-    <Card>
+    <Card style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title>{listTitle}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
