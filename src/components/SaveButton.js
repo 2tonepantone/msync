@@ -42,7 +42,6 @@ const SaveButton = ({ artistName, lists }) => {
       id="dropdown-item-button"
       title="Add"
     >
-      <Dropdown.Item as="button" value="Favorites" onClick={handleClick}>Favorites</Dropdown.Item>
       {Object.entries(mergedLists).map(([key]) => (
         <Dropdown.Item as="button" value={key} onClick={handleClick}>{key}</Dropdown.Item>
       ))}
