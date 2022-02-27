@@ -12,7 +12,7 @@ export default function NavbarComponent() {
         <span className="navbar-brand">MSYNC</span>
         <Link to="/" onClick={handleClick}>Home</Link>
         <Link to="/lists/artists">Saved Artists</Link>
-        <Link to="#">Saved Tracks</Link>
+        <Link to="/lists/tracks">Saved Tracks</Link>
         <SearchFormComponent />
       </Container>
     </Nav>
