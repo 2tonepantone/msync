@@ -12,6 +12,7 @@ import store from './app/store'
 import { Provider } from 'react-redux'
 import ScrollToTop from './ScrollToTop'
 import { Container } from 'react-bootstrap'
+import SimilarTracks from './routes/SimilarTracks'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -32,6 +33,7 @@ ReactDOM.render(
             <Route path="artists/:artist" element={<SimilarArtists />} />
             <Route path="artist/:artist" element={<ArtistDetail />} />
             <Route path="lists/artists" element={<ArtistLists />} />
+            <Route path="tracks/:artist/:trackName" element={<SimilarTracks />} />
           </Route>
         </Routes>
       </ScrollToTop>
