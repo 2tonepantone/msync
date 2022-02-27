@@ -5,31 +5,33 @@ import { Link } from "react-router-dom"
 import { addArtist } from "../features/artists/artistsSlice"
 import SaveButton from "./SaveButton"
 
-const SimilarTrackCard = ({ name, match, queriedArtist, queriedTrack, mbid }) => {
-  // const [listeners, setListeners] = useState()
-  // const [playCount, setPlayCount] = useState()
-  // const [tags, setTags] = useState()
-  // const key = process.env.REACT_APP_KEY
-  // const dispatch = useDispatch()
+const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
+  const [listeners, setListeners] = useState()
+  const [tags, setTags] = useState()
+  const key = process.env.REACT_APP_KEY
+  const dispatch = useDispatch()
+  const { name, playcount, artist } = trackData
 
-  // useEffect(() => {
-  //   const query = mbid ? `mbid=${mbid}` : `artist=${encodeURIComponent(name)}`
-  //   fetch(`http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&${query}&api_key=${key}`)
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         setListeners(parseInt(result.artist.stats.listeners).toLocaleString())
-  //         setPlayCount(parseInt(result.artist.stats.playcount).toLocaleString())
-  //         setTags(result.artist.tags.tag.map(tag => tag.name).join(', '))
-  //         dispatch(addArtist({ [result.artist.name]: result.artist }))
-  //       },
-  //       (error) => {
-  //         console.log("Oops!", error)
-  //       }
-  //     )
-  // }, [mbid, name])
+  useEffect(() => {
+    const query = trackData.mbid ? `mbid=${trackData.mbid}` : `artist=${encodeURIComponent(name)}&track=${encodeURIComponent(name)}`
+    fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${key}&${query}&format=json`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setListeners(parseInt(result.track.listeners).toLocaleString())
+          setTags(result.track.toptags.tag.map(tag => tag.name).join(', '))
+          // dispatch(addArtist({ [result.artist.name]: result.artist }))
+        },
+        (error) => {
+          console.log("Oops!", error)
+        }
+      )
+  }, [trackData.mbid, name])
 
-  // const handleClick = () => document.getElementById('artistSearchInput').value = ''
+  const handleClick = () => {
+    document.getElementById('artistSearchInput').value = ''
+    document.getElementById('trackSearchInput').value = ''
+  }
 
   return (
     <Card style={{ width: '18rem' }}>
@@ -38,16 +40,17 @@ const SimilarTrackCard = ({ name, match, queriedArtist, queriedTrack, mbid }) =>
           {name} <SaveButton artistName={name} />
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          {match && `${match}% similar to "${queriedTrack}" by ${queriedArtist}`}
+          {match && `${match}% similar to "${queriedTrack}"`}
         </Card.Subtitle>
       </Card.Body>
       <ListGroup variant="flush">
-        {/* <ListGroupItem>Listeners: {listeners}</ListGroupItem>
-        <ListGroupItem>Play count: {playCount}</ListGroupItem>
+        <ListGroupItem>Artist: {artist.name}</ListGroupItem>
+        <ListGroupItem>Play count: {parseInt(playcount).toLocaleString()}</ListGroupItem>
+        <ListGroupItem>Listeners: {listeners}</ListGroupItem>
         <ListGroupItem>Tags: {tags}</ListGroupItem>
         <ListGroupItem>
-          <Link to={`/artist/${name}`} onClick={handleClick}>More info</Link>
-        </ListGroupItem> */}
+          <Link to={`/track/${name}`} onClick={handleClick}>More track info</Link>
+        </ListGroupItem>
       </ListGroup>
     </Card>
   )
