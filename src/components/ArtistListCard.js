@@ -1,20 +1,17 @@
 import React from "react"
 import { Accordion, Button, Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { deleteItem } from "../features/artists/listsSlice"
+import DeleteButton from "./DeleteButton"
 
 const ArtistListCard = ({ listTitle, artistList }) => {
-  const dispatch = useDispatch()
-
-  const handleDelete = (artist) => {
-    dispatch(deleteItem(artist))
-  }
 
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Body>
-        <Card.Title>{listTitle}</Card.Title>
+        <Card.Title className="d-flex justify-content-between">
+          {listTitle}
+          <DeleteButton target={listTitle} targetType="list" />
+        </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           {artistList.items.length} item(s) in list
         </Card.Subtitle>
@@ -30,13 +27,7 @@ const ArtistListCard = ({ listTitle, artistList }) => {
                 <ListGroupItem>Tags: {(artist.tags.tag).map(tag => tag.name).join(', ')}</ListGroupItem>
                 <ListGroupItem className="d-flex justify-content-between">
                   <Link to={`/artist/${artist.name}`}>More info</Link>
-                  <Button
-                    size="sm"
-                    variant="outline-danger"
-                    onClick={() => handleDelete(artist.name)}
-                  >
-                    Delete
-                  </Button>
+                  <DeleteButton target={artist.name} targetType="artist" />
                 </ListGroupItem>
               </Accordion.Body>
             </Accordion.Item>
