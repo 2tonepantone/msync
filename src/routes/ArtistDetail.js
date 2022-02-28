@@ -9,20 +9,48 @@ import {
   Accordion,
   Button
 } from "react-bootstrap"
-import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import SaveButton from "../components/SaveButton"
 import SimilarArtistCard from "../components/SimilarArtistCard"
+import { useDispatch } from "react-redux"
+import { addArtist } from "../features/artists/artistsSlice"
 import './ArtistDetail.css'
 
 const ArtistDetail = () => {
   const key = process.env.REACT_APP_KEY
   const { artist } = useParams()
-  const artistsData = useSelector(state => state.artists)
   const [topTracks, setTopTracks] = useState()
   const [topAlbums, setTopAlbums] = useState()
-  const { name, bio, ontour, similar, stats, tags } = artistsData[artist]
+  const [name, setName] = useState()
+  const [bio, setBio] = useState()
+  const [ontour, setOntour] = useState()
+  const [similarArtists, setSimilarArtists] = useState()
+  const [tags, setTags] = useState()
+  const [listeners, setListeners] = useState()
+  const [playCount, setPlayCount] = useState()
   const [expanded, setExpanded] = useState(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const query = `artist=${encodeURIComponent(artist)}`
+    fetch(`http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&${query}&api_key=${key}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setName(result.artist.name)
+          setBio(result.artist.bio.content)
+          setOntour(result.artist.ontour)
+          setSimilarArtists(result.artist.similar.artist)
+          setListeners(parseInt(result.artist.stats.listeners).toLocaleString())
+          setPlayCount(parseInt(result.artist.stats.playcount).toLocaleString())
+          setTags(result.artist.tags.tag.map(tag => tag.name).join(', '))
+          dispatch(addArtist({ [result.artist.name]: result.artist }))
+        },
+        (error) => {
+          console.log("Oops!", error)
+        }
+      )
+  }, [artist])
 
   useEffect(() => {
     fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json&limit=10`)
@@ -46,7 +74,7 @@ const ArtistDetail = () => {
           console.log("Oops!", error)
         }
       )
-  }, [])
+  }, [artist])
 
   return (
     <Container className="mb-5 mt-4">
@@ -58,10 +86,10 @@ const ArtistDetail = () => {
           <Card.Subtitle className="mb-2 text-muted">
             {ontour === '1' ? "Currently" : "Not"} touring
           </Card.Subtitle>
-          {bio.content &&
+          {bio &&
             <>
               <Card.Text className={`bio mb-1 ${expanded ? "expanded" : ""}`}>
-                {(bio.content).match(/[^<]+/)}
+                {bio.match(/[^<]+/)}
               </Card.Text>
               <Button
                 variant="outline-secondary"
@@ -104,14 +132,14 @@ const ArtistDetail = () => {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
-          <ListGroupItem>Listeners: {parseInt(stats.listeners).toLocaleString()}</ListGroupItem>
-          <ListGroupItem>Play count: {parseInt(stats.playcount).toLocaleString()}</ListGroupItem>
-          <ListGroupItem>Tags: {(tags.tag).map(tag => tag.name).join(', ')}</ListGroupItem>
+          <ListGroupItem>Listeners: {parseInt(listeners).toLocaleString()}</ListGroupItem>
+          <ListGroupItem>Play count: {parseInt(playCount).toLocaleString()}</ListGroupItem>
+          <ListGroupItem>Tags: {tags}</ListGroupItem>
         </ListGroup>
       </Card>
       <Row className="mt-4">
-        {similar.artist && <h5>Similar Artists:</h5>}
-        {similar.artist && similar.artist.slice(0,3).map(artist => (
+        {similarArtists && <h5>Similar Artists:</h5>}
+        {similarArtists && similarArtists.slice(0,3).map(artist => (
             <Col className="g-4">
               <SimilarArtistCard
                 name={artist.name}
