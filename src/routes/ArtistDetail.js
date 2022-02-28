@@ -46,7 +46,7 @@ const ArtistDetail = () => {
           console.log("Oops!", error)
         }
       )
-  }, [artist])
+  }, [])
 
   return (
     <Container className="mb-5 mt-4">

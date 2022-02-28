@@ -22,7 +22,7 @@ const SimilarArtists = () => {
           console.log("Oops!", error)
         }
       )
-  }, [artist])
+  }, [])
 
   return (
     <Container className="mb-5">

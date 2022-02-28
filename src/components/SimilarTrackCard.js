@@ -10,10 +10,10 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
   const [tags, setTags] = useState()
   const key = process.env.REACT_APP_KEY
   const dispatch = useDispatch()
-  const { name, playcount, artist } = trackData
+  const { name, playcount, artist, mbid } = trackData
 
   useEffect(() => {
-    const query = trackData.mbid ? `mbid=${trackData.mbid}` : `artist=${encodeURIComponent(name)}&track=${encodeURIComponent(name)}`
+    const query = mbid ? `mbid=${mbid}` : `artist=${encodeURIComponent(name)}&track=${encodeURIComponent(name)}`
     fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${key}&${query}&format=json`)
       .then(res => res.json())
       .then(
@@ -26,7 +26,7 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
           console.log("Oops!", error)
         }
       )
-  }, [trackData.mbid, name])
+  }, [])
 
   const handleClick = () => {
     document.getElementById('artistSearchInput').value = ''
