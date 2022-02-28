@@ -19,7 +19,6 @@ const SaveTrackButton = ({ trackName, trackLists }) => {
   }, {})
 
   useEffect(() => {
-    console.log(listTitle);
     listTitle && dispatch(addItem({items: tracksData[trackName], listTitle: listTitle}))
   }, [listTitle])
 
