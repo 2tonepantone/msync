@@ -132,8 +132,8 @@ const ArtistDetail = () => {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
-          <ListGroupItem>Listeners: {parseInt(listeners).toLocaleString()}</ListGroupItem>
-          <ListGroupItem>Play count: {parseInt(playCount).toLocaleString()}</ListGroupItem>
+          <ListGroupItem>Listeners: {listeners}</ListGroupItem>
+          <ListGroupItem>Play count: {playCount}</ListGroupItem>
           <ListGroupItem>Tags: {tags}</ListGroupItem>
         </ListGroup>
       </Card>
