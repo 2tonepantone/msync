@@ -47,7 +47,7 @@ const TrackDetail = () => {
           console.log("Oops!", error)
         }
       )
-  }, [])
+  }, [artist, trackName])
 
   useEffect(() => {
     const url = `http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(trackName)}&limit=12&api_key=${key}&format=json`
@@ -61,7 +61,7 @@ const TrackDetail = () => {
           console.log("Oops!", error)
         }
       )
-  }, [])
+  }, [artist, trackName])
 
   return (
     <Container className="mb-5 mt-4">

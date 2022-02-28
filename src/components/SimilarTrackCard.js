@@ -26,7 +26,7 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
           console.log("Oops!", error)
         }
       )
-  }, [])
+  }, [mbid, name])
 
   const handleClick = () => {
     document.getElementById('artistSearchInput').value = ''

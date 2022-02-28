@@ -20,7 +20,7 @@ const SimilarTracks = () => {
           console.log("Oops!", error)
         }
       )
-  }, [])
+  }, [artist, trackName])
 
   const capitalize = (string) => (string.charAt(0).toUpperCase() + string.slice(1))
 
