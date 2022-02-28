@@ -14,7 +14,7 @@ const SimilarArtistCard = ({ name, match, queriedArtist, mbid }) => {
 
   useEffect(() =>{
     const query = mbid ? `mbid=${mbid}` : `artist=${encodeURIComponent(name)}`
-    fetch(`http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&${query}&api_key=${key}`)
+    fetch(`https://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&${query}&api_key=${key}`)
       .then(res => res.json())
       .then(
         (result) => {

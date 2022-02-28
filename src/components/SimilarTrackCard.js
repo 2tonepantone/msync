@@ -14,7 +14,7 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
 
   useEffect(() => {
     const query = mbid ? `mbid=${mbid}` : `artist=${encodeURIComponent(name)}&track=${encodeURIComponent(name)}`
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${key}&${query}&format=json`)
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${key}&${query}&format=json`)
       .then(res => res.json())
       .then(
         (result) => {

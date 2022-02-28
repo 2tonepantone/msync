@@ -9,7 +9,7 @@ const SimilarTracks = () => {
   const [similarTracks, setSimilarTracks] = useState()
 
   useEffect(() => {
-    const url = `http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(trackName)}&limit=12&api_key=${key}&format=json`
+    const url = `https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(trackName)}&limit=12&api_key=${key}&format=json`
     fetch(url)
       .then(res => res.json())
       .then(

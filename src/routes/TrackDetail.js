@@ -31,7 +31,7 @@ const TrackDetail = () => {
 
   useEffect(() => {
     const query = `artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(trackName)}`
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${key}&${query}&format=json`)
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=${key}&${query}&format=json`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -50,7 +50,7 @@ const TrackDetail = () => {
   }, [artist, trackName])
 
   useEffect(() => {
-    const url = `http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(trackName)}&limit=12&api_key=${key}&format=json`
+    const url = `https://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(trackName)}&limit=12&api_key=${key}&format=json`
     fetch(url)
       .then(res => res.json())
       .then(
