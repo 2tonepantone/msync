@@ -2,6 +2,7 @@ import React from "react"
 import ArtistListCard from "../components/ArtistListCard"
 import { Col, Container, Row } from "react-bootstrap"
 import { connect, useSelector } from "react-redux"
+import IndexComponent from "./IndexComponent"
 
 const ArtistLists = ({ lists }) => {
   // const lists = useSelector(state => state.lists)
@@ -17,6 +18,7 @@ const ArtistLists = ({ lists }) => {
 
   return (
     <Container className="mb-5">
+      {!Object.entries(mergedLists).length && <IndexComponent pageType="artists" />}
       <Row>
         {Object.entries(mergedLists).map(([key, value]) => (
           <Col className="g-4">

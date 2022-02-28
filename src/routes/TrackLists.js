@@ -2,6 +2,7 @@ import React from "react"
 import { Col, Container, Row } from "react-bootstrap"
 import { connect } from "react-redux"
 import TrackListCard from "../components/TrackListCard"
+import IndexComponent from "./IndexComponent"
 
 const TrackLists = ({ trackLists }) => {
   const mergedLists = trackLists.reduce((acc, { listTitle, items }) => {
@@ -16,6 +17,7 @@ const TrackLists = ({ trackLists }) => {
 
   return (
     <Container className="mb-5">
+      {!Object.entries(mergedLists).length && <IndexComponent pageType="tracks" />}
       <Row>
         {Object.entries(mergedLists).map(([key, value]) => (
           <Col className="g-4">
