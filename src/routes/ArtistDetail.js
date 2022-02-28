@@ -33,7 +33,7 @@ const ArtistDetail = () => {
 
   useEffect(() => {
     const query = `artist=${encodeURIComponent(artist)}`
-    fetch(`http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&${query}&api_key=${key}`)
+    fetch(`https://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&${query}&api_key=${key}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -53,7 +53,7 @@ const ArtistDetail = () => {
   }, [artist])
 
   useEffect(() => {
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json&limit=10`)
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json&limit=10`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -64,7 +64,7 @@ const ArtistDetail = () => {
         }
       )
 
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json`)
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${key}&format=json`)
       .then(res => res.json())
       .then(
         (result) => {

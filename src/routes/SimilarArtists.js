@@ -10,7 +10,7 @@ const SimilarArtists = () => {
   const [queriedArtist, setQueriedArtist] = useState()
 
   useEffect(() => {
-    const url = `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&limit=12&api_key=${key}&format=json`
+    const url = `https://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${encodeURIComponent(artist)}&limit=12&api_key=${key}&format=json`
     fetch(url)
       .then(res => res.json())
       .then(
