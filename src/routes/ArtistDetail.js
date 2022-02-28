@@ -9,7 +9,7 @@ import {
   Accordion,
   Button
 } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import SaveButton from "../components/SaveButton"
 import SimilarArtistCard from "../components/SimilarArtistCard"
 import { useDispatch } from "react-redux"
@@ -76,6 +76,11 @@ const ArtistDetail = () => {
       )
   }, [artist])
 
+  const handleClick = () => {
+    document.getElementById('artistSearchInput').value = ''
+    document.getElementById('trackSearchInput').value = ''
+  }
+
   return (
     <Container className="mb-5 mt-4">
       <Card>
@@ -108,9 +113,18 @@ const ArtistDetail = () => {
               <Accordion.Body className="p-0">
               {topTracks && topTracks.map((track, i) => (
                 <>
-                  <Card.Header>{`${i+1}. ${track.name}`}</Card.Header>
+                  <Card.Header>
+                    {`${i + 1}. `}
+                    <Link
+                      to={`/track/${artist}/${track.name}`}
+                      onClick={handleClick}
+                    >
+                      {track.name}
+                    </Link>
+                  </Card.Header>
                   <ListGroupItem>
-                    <strong>Plays:</strong> {parseInt(track.playcount).toLocaleString()} <strong>Listeners:</strong> {parseInt(track.listeners).toLocaleString()}
+                    <strong>Plays:</strong> {parseInt(track.playcount).toLocaleString()}
+                    <strong> Listeners:</strong> {parseInt(track.listeners).toLocaleString()}
                   </ListGroupItem>
                 </>
               ))}

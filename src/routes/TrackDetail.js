@@ -8,7 +8,7 @@ import {
   Button,
   Col
 } from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import SaveTrackButton from "../components/SaveTrackButton"
 import SimilarTrackCard from "../components/SimilarTrackCard"
 import { useDispatch } from "react-redux"
@@ -63,6 +63,11 @@ const TrackDetail = () => {
       )
   }, [artist, trackName])
 
+  const handleClick = () => {
+    document.getElementById('artistSearchInput').value = ''
+    document.getElementById('trackSearchInput').value = ''
+  }
+
   return (
     <Container className="mb-5 mt-4">
       <Card>
@@ -86,7 +91,15 @@ const TrackDetail = () => {
           }
         </Card.Body>
         <ListGroup variant="flush">
-          <ListGroupItem>Artist: {artist}</ListGroupItem>
+          <ListGroupItem>
+            Artist:&nbsp;
+            <Link
+              to={`/artist/${artist}`}
+              onClick={handleClick}
+            >
+              {artist}
+            </Link>
+          </ListGroupItem>
           <ListGroupItem>Album: {album}</ListGroupItem>
           <ListGroupItem>Play count: {parseInt(playCount).toLocaleString()}</ListGroupItem>
           <ListGroupItem>Listeners: {parseInt(listeners).toLocaleString()}</ListGroupItem>
