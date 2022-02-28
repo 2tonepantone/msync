@@ -15,6 +15,7 @@ import { Container } from 'react-bootstrap'
 import SimilarTracks from './routes/SimilarTracks'
 import TrackDetail from './routes/TrackDetail'
 import TrackLists from './routes/TrackLists'
+import IndexComponent from './routes/IndexComponent'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -22,16 +23,7 @@ ReactDOM.render(
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route
-              index
-              element={
-                <Container className='mt-5'>
-                  <h1>
-                    Search for an artist or track above to find similar ones!
-                  </h1>
-                </Container>
-              }
-            />
+            <Route index element={<IndexComponent pageType="home" />} />
             <Route path="artists/:artist" element={<SimilarArtists />} />
             <Route path="artist/:artist" element={<ArtistDetail />} />
             <Route path="lists/artists" element={<ArtistLists />} />
