@@ -44,7 +44,15 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
         </Card.Subtitle>
       </Card.Body>
       <ListGroup variant="flush">
-        <ListGroupItem>Artist: {artist.name}</ListGroupItem>
+        <ListGroupItem>
+          Artist:&nbsp;
+          <Link
+            to={`/artist/${artist.name}`}
+            onClick={handleClick}
+          >
+            {artist.name}
+          </Link>
+        </ListGroupItem>
         <ListGroupItem>Play count: {parseInt(playcount).toLocaleString()}</ListGroupItem>
         <ListGroupItem>Listeners: {listeners}</ListGroupItem>
         <ListGroupItem>Tags: {tags}</ListGroupItem>
