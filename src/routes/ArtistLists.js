@@ -1,11 +1,10 @@
 import React from "react"
 import ArtistListCard from "../components/ArtistListCard"
 import { Col, Container, Row } from "react-bootstrap"
-import { connect, useSelector } from "react-redux"
+import { connect } from "react-redux"
 import IndexComponent from "./IndexComponent"
 
 const ArtistLists = ({ lists }) => {
-  // const lists = useSelector(state => state.lists)
   const mergedLists = lists.reduce((acc, { listTitle, items }) => {
     acc[listTitle] ??= { items: [] };
     if (Array.isArray(items)) // if it's array type then concat
