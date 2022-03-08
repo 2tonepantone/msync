@@ -18,7 +18,7 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
       .then(res => res.json())
       .then(
         (result) => {
-          setListeners(parseInt(result.track?.listeners))
+          setListeners(parseInt(result.track?.listeners).toLocaleString())
           setTags(result.track?.toptags.tag.map(tag => tag.name).join(', '))
           dispatch(addTrack({ [name]: result.track }))
         },
