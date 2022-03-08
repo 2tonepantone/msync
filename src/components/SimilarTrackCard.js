@@ -18,8 +18,8 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
       .then(res => res.json())
       .then(
         (result) => {
-          setListeners(parseInt(result.track.listeners).toLocaleString())
-          setTags(result.track.toptags.tag.map(tag => tag.name).join(', '))
+          setListeners(parseInt(result.track?.listeners).toLocaleString())
+          setTags(result.track?.toptags.tag.map(tag => tag.name).join(', '))
           dispatch(addTrack({ [name]: result.track }))
         },
         (error) => {
@@ -54,8 +54,8 @@ const SimilarTrackCard = ({ trackData, match, queriedTrack }) => {
           </Link>
         </ListGroupItem>
         <ListGroupItem>Play count: {parseInt(playcount).toLocaleString()}</ListGroupItem>
-        <ListGroupItem>Listeners: {listeners}</ListGroupItem>
-        <ListGroupItem>Tags: {tags}</ListGroupItem>
+        <ListGroupItem>Listeners: {listeners || "No info"}</ListGroupItem>
+        <ListGroupItem>Tags: {tags || "No info"}</ListGroupItem>
         <ListGroupItem>
           <Link to={`/track/${artist.name}/${name}`} onClick={handleClick}>More track info</Link>
         </ListGroupItem>

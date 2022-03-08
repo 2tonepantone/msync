@@ -37,8 +37,8 @@ const TrackDetail = () => {
         (result) => {
           setName(result.track.name)
           setListeners(result.track.listeners)
-          setBio(result.track.wiki.content)
-          setAlbum(result.track.album.title)
+          setBio(result.track.wiki)
+          setAlbum(result.track.album)
           setTags(result.track.toptags.tag)
           setPlayCount(result.track.playcount)
           dispatch(addTrack({ [capitalize(trackName)]: result.track }))
@@ -78,7 +78,7 @@ const TrackDetail = () => {
           {bio &&
             <>
               <Card.Text className={`bio mb-1 ${expanded ? "expanded" : ""}`}>
-                {(bio).match(/[^<]+/)}
+                {(bio.content).match(/[^<]+/)}
               </Card.Text>
               <Button
                 variant="outline-secondary"
@@ -100,14 +100,14 @@ const TrackDetail = () => {
               {artist}
             </Link>
           </ListGroupItem>
-          <ListGroupItem>Album: {album}</ListGroupItem>
+          {album && <ListGroupItem>Album: {album.title}</ListGroupItem>}
           <ListGroupItem>Play count: {parseInt(playCount).toLocaleString()}</ListGroupItem>
           <ListGroupItem>Listeners: {parseInt(listeners).toLocaleString()}</ListGroupItem>
           <ListGroupItem>Tags: {tags?.map(tag => tag.name).join(', ')}</ListGroupItem>
         </ListGroup>
       </Card>
       <Row className="mt-4">
-        {similarTracks && <h5>Similar Tracks:</h5>}
+        {similarTracks?.length > 0 && <h5>Similar Tracks:</h5>}
         {similarTracks && similarTracks.slice(0,6).map(track => (
           <Col className="g-4">
             <SimilarTrackCard
