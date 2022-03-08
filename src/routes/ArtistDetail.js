@@ -107,8 +107,8 @@ const ArtistDetail = () => {
           }
         </Card.Body>
         <ListGroup variant="flush">
-          <Accordion>
-            <Accordion.Item eventKey={name}>
+          <Accordion alwaysOpen>
+            <Accordion.Item eventKey={artist}>
               <Accordion.Header>Top Tracks:</Accordion.Header>
               <Accordion.Body className="p-0">
               {topTracks && topTracks.map((track, i) => (
@@ -130,9 +130,7 @@ const ArtistDetail = () => {
               ))}
               </Accordion.Body>
             </Accordion.Item>
-          </Accordion>
-          <Accordion>
-            <Accordion.Item eventKey={name}>
+            <Accordion.Item eventKey={`${artist}1`}>
               <Accordion.Header>Top Albums:</Accordion.Header>
               <Accordion.Body className="p-0">
               {topAlbums && topAlbums.slice(0,10).map((album, i) => (
