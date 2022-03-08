@@ -150,7 +150,7 @@ const ArtistDetail = () => {
         </ListGroup>
       </Card>
       <Row className="mt-4">
-        {similarArtists && <h5>Similar Artists:</h5>}
+        {similarArtists?.length > 0 && <h5>Similar Artists:</h5>}
         {similarArtists && similarArtists.slice(0,3).map(artist => (
             <Col className="g-4">
               <SimilarArtistCard
