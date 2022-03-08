@@ -38,6 +38,7 @@ const SearchFormComponent = () => {
           inline
           defaultChecked
           label="Similar Artists"
+          id="similarArtists"
           name="similar"
           value="artists"
           type="radio"
@@ -46,6 +47,7 @@ const SearchFormComponent = () => {
         <Form.Check
           inline
           label="Similar Tracks"
+          id="similarTracks"
           name="similar"
           value="tracks"
           type="radio"
